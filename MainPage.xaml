@@ -1,0 +1,140 @@
+﻿<Page
+    x:Class="dbufr.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:dbufr"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Name="bar_delete" Icon="Delete" Label="Supprimer" Click="bar_delete_Click"/>
+            <AppBarButton x:Name="bar_save" Icon="Save" Label="Enreg." Click="bar_save_Click"/>
+            <AppBarButton x:Name="bar_sync" Icon="Sync" Label="Sync" Click="bar_sync_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="OrientationStateGroup">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition GeneratedDuration="0:0:0.3"/>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="PortrateState"/>
+                <VisualState x:Name="LandscapeState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="641" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="NarrowState"/>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Pivot 
+            x:Name="pivot" 
+            Title="DBUfr" 
+            MinHeight="640">
+            <PivotItem 
+                x:Name="Grades" 
+                Header="Notes" 
+                Margin="12,0,12,15" 
+                ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                <ScrollViewer>
+                    <TextBlock 
+                        x:Name="tb_grades" 
+                        TextWrapping="Wrap" 
+                        Text="Pour visualiser les notes, voir section Infos."
+                    />
+                </ScrollViewer>
+            </PivotItem>
+            <PivotItem 
+                x:Name="UE" 
+                Header="UE" 
+                Margin="12,0,12,15" 
+                ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            >
+                <ScrollViewer>
+                    <TextBlock 
+                        x:Name="tb_listeUE" 
+                        TextWrapping="Wrap" 
+                        Text="Pour visualiser les notes, voir section Infos."
+                    />
+                </ScrollViewer>
+            </PivotItem>
+            <PivotItem 
+                x:Name="rawHTML" 
+                Header="Raw HTML" 
+                Margin="12,0,12,15" 
+                ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            >
+                <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <TextBlock 
+                        x:Name="tb_rawHTML" 
+                        TextWrapping="Wrap" 
+                        Text="Pour visualiser les notes, voir section Infos."
+                    />
+                </ScrollViewer>
+            </PivotItem>
+            <PivotItem 
+                x:Name="Infos" 
+                Header="Infos" 
+                HorizontalContentAlignment="Center" 
+                VerticalContentAlignment="Center" 
+                Margin="10,25,10,0" 
+                MinHeight="500" 
+                ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                VerticalAlignment="Top"
+            >
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Image 
+                            x:Name="image_file_state" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Top" 
+                            Source="Assets/file_x.png" 
+                            Height="70" 
+                            Width="70"
+                        />
+                        <StackPanel Orientation="Vertical" Margin="15,0,0,0">
+                            <TextBox 
+                                x:Name="box_etu" 
+                                TextWrapping="Wrap" 
+                                Text="" 
+                                PlaceholderText="Numero Etudiant" 
+                                VerticalAlignment="Top" 
+                                Margin="0" 
+                                InputScope="Number"
+                            />
+                            <TextBox 
+                                x:Name="box_pass" 
+                                TextWrapping="Wrap" 
+                                Text="" 
+                                PlaceholderText="Mot de passe" 
+                                VerticalAlignment="Top" 
+                                BorderThickness="2" 
+                                Margin="0"
+                            />
+                        </StackPanel>
+                    </StackPanel>
+                    <TextBlock 
+                        x:Name="tb_LastUpdate" 
+                        TextWrapping="Wrap" 
+                        Text="" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                    />
+                </StackPanel>
+            </PivotItem>
+            <PivotItem 
+                x:Name="List" 
+                Header="List"
+            >
+                <ListView 
+                    x:Name="listView" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top"
+                />
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</Page>
